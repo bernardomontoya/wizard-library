@@ -22,14 +22,14 @@ export default [
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
       }),
       postcss({
-        minimize: true,
-        modules: true,
-        use: {
-          sass: null,
-          stylus: null,
-          less: { javascriptEnabled: true },
+        config: {
+          path: './postcss.config.js',
         },
-        extract: true,
+        extensions: ['.css'],
+        minimize: true,
+        inject: {
+          insertAt: 'top',
+        },
       }),
     ],
     output: [
