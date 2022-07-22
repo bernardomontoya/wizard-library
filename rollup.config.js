@@ -30,11 +30,12 @@ export default [
         inject: {
           insertAt: 'top',
         },
+        extract: 'globals.css',
       }),
     ],
     output: [
-      { file: pkg.main, format: 'cjs' },
-      { file: pkg.module, format: 'es' },
+      { file: pkg.main, format: 'cjs', sourcemap: true },
+      { file: pkg.module, format: 'es', sourcemap: true },
     ],
   },
 ];
