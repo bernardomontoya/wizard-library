@@ -70,6 +70,7 @@
     "rollup": "^2.77.0",
     "rollup-plugin-delete": "^2.0.0",
     "rollup-plugin-node-externals": "^4.1.1",
+    "rollup-plugin-postcss": "^3.1.8",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat",
     "typescript": "^4.7.4"
   },
