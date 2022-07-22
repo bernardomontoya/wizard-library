@@ -1,8 +1,8 @@
-import { Story, Meta } from "@storybook/react/types-6-0";
-import { Button } from "../buttons/Button";
+import { Story, Meta } from '@storybook/react/types-6-0';
+import { Button } from '../buttons/Button';
 
 export default {
-  title: "Example/Button",
+  title: 'Example/Button',
   component: Button,
 } as Meta;
 
