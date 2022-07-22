@@ -19,12 +19,14 @@ export default [
         },
         extensions: ['.css'],
         minimize: true,
+        inject: {
+          insertAt: 'top',
+        },
       }),
       nodeResolve({
         extensions: ['.js', '.ts', '.tsx'],
       }),
       commonjs(),
-
       babel({
         babelHelpers: 'runtime',
         exclude: '**/node_modules/**',
