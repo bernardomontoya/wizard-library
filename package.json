@@ -5,9 +5,11 @@
   "main": "dist/index.cjs.js",
   "module": "dist/index.esm.js",
   "sideEffects": false,
+  "types": "dist/typings/index.d.ts",
   "scripts": {
-    "build": "npm run build:js",
+    "build": "npm run build:js && npm run build:types",
     "build:js": "rollup -c rollup.config.js",
+    "build:types": "tsc -p tsconfig.build.json",
     "test": "npm run test:ts",
     "test:ts": "tsc",
     "lint": "npm run lint:format && npm run lint:js",
