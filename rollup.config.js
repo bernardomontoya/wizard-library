@@ -4,6 +4,7 @@ import babel from '@rollup/plugin-babel';
 import externals from 'rollup-plugin-node-externals';
 import postcss from 'rollup-plugin-postcss';
 import del from 'rollup-plugin-delete';
+import { terser } from 'rollup-plugin-terser';
 import pkg from './package.json';
 
 export default [
@@ -12,26 +13,24 @@ export default [
     plugins: [
       del({ targets: 'dist/*' }),
       externals({ deps: true }),
-      nodeResolve({
-        extensions: ['.js', '.ts', '.tsx'],
-      }),
-      commonjs(),
-      babel({
-        babelHelpers: 'runtime',
-        exclude: '**/node_modules/**',
-        extensions: ['.js', '.jsx', '.ts', '.tsx'],
-      }),
       postcss({
         config: {
           path: './postcss.config.js',
         },
         extensions: ['.css'],
         minimize: true,
-        inject: {
-          insertAt: 'top',
-        },
-        extract: 'globals.css',
       }),
+      nodeResolve({
+        extensions: ['.js', '.ts', '.tsx'],
+      }),
+      commonjs(),
+
+      babel({
+        babelHelpers: 'runtime',
+        exclude: '**/node_modules/**',
+        extensions: ['.js', '.jsx', '.ts', '.tsx'],
+      }),
+      terser(),
     ],
     output: [
       { file: pkg.main, format: 'cjs', sourcemap: true },
