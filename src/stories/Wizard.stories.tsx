@@ -1,4 +1,5 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
+import { baseMachine } from '../consts/baseMachine';
 import { Wizard } from '../machines/Wizard';
 
 export default {
@@ -6,6 +7,8 @@ export default {
   component: Wizard,
 } as Meta;
 
-const Template: Story = (args) => <Wizard {...args} />;
+const Template: Story = (args) => (
+  <Wizard configuration={baseMachine} {...args} />
+);
 
 export const Default = Template.bind({});
