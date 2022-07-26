@@ -11,7 +11,6 @@ const useMachineContext = () => {
     machine: { states },
   } = wizardService;
 
-  console.log('--USING MACHINE CONTEXT');
   return { state, send, states, uiConfiguration };
 };
 

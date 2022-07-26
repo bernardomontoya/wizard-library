@@ -38,7 +38,7 @@ const Form: React.FC<FormProps> = ({ title, description, fieldset, send }) => {
 
   useEffect(() => {
     trigger();
-  }, [trigger]);
+  }, [trigger, fieldset]);
 
   return (
     <div className="flex flex-col justify-between h-full">

@@ -35,8 +35,6 @@ export const Wizard: React.FC<WizardProps> = ({ configuration }) => {
   const sanitizedMachineConfiguration =
     sanitizeMachineConfiguration(wizardConfig);
 
-  console.log('--MACHINE', sanitizedMachineConfiguration);
-
   const machineConfiguration: MachineConfiguration = {
     id: 'wizard',
     ...sanitizedMachineConfiguration,
