@@ -1,6 +1,7 @@
 import useMachineContext from '../../../hooks/useMachineContext';
 import Form from '../form/Form';
 import Onboarding from '../onboarding/Onboarding';
+import Summary from '../summary/Summary';
 
 const Step: React.FC = () => {
   const { state, uiConfiguration, send } = useMachineContext();
@@ -22,6 +23,9 @@ const Step: React.FC = () => {
           description={description}
           fieldset={fields || []}
         />
+      )}
+      {displaySummary && (
+        <Summary uiConfiguration={uiConfiguration} send={send} />
       )}
     </div>
   );

@@ -57,3 +57,22 @@ export const getFormDefaultValues = (
   });
   return initialValues;
 };
+
+export const getFormLabels = (
+  configuration: WizardConfig
+): Record<string, any> => {
+  const formLabels = {} as Record<string, any>;
+
+  Object.keys(configuration.steps).forEach((step) => {
+    const currentStep = configuration.steps[step];
+    const { fields } = currentStep;
+
+    if (fields) {
+      fields.forEach((field) => {
+        const { id, label } = field;
+        formLabels[id as string] = label;
+      });
+    }
+  });
+  return formLabels;
+};
