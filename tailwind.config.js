@@ -10,6 +10,9 @@ module.exports = {
         'gray-light': '#F0F3F5',
         'blue-vivid': '#0072CE',
       },
+      spacing: {
+        xxl: '550px',
+      },
     },
   },
   plugins: [],

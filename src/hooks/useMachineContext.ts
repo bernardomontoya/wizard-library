@@ -4,15 +4,15 @@ import { useActor } from '@xstate/react';
 import { GlobalStateContext } from '../machines/Wizard';
 
 const useMachineContext = () => {
-  const { wizardService } = useContext(GlobalStateContext);
+  const { wizardService, uiConfiguration } = useContext(GlobalStateContext);
   const [state] = useActor(wizardService);
   const {
     send,
     machine: { states },
   } = wizardService;
-  console.log('--WIZARD', wizardService);
 
-  return { state, send, states };
+  console.log('--USING MACHINE CONTEXT');
+  return { state, send, states, uiConfiguration };
 };
 
 export default useMachineContext;

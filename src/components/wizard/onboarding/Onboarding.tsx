@@ -1,40 +1,38 @@
 import React from 'react';
-import useMachineContext from '../../../hooks/useMachineContext';
-import OrganizationIcon from '../../icons/organization';
-import SavingsIcon from '../../icons/savings';
-import VehicleIcon from '../../icons/vehicle';
+import { WizardSend, WizardStep } from '../../../types/shared';
+import Button from '../../button/Button';
+import Title from '../../typography/Title';
 import IconCard from './IconCard';
 
-const Onboarding: React.FC = () => {
-  const { state, send } = useMachineContext();
+type OnboardingProps = {
+  uiConfiguration: WizardStep;
+  send: WizardSend;
+};
 
-  if (!state.matches('iddle')) return null;
+const Onboarding: React.FC<OnboardingProps> = ({ uiConfiguration, send }) => {
+  const { title, description } = uiConfiguration;
+  const cards = uiConfiguration && uiConfiguration.cards;
 
   return (
-    <div className="container mx-auto text-center bg-white py-14 text-gray-very-dark rounded-2xl">
-      <div className="max-w-xl mx-auto mb-14">
-        <h1 className="mb-6 text-4xl font-bold">
-          Going electric starts with understanding your needs
-        </h1>
-        <p>
-          We need to understand your requirements so we can recommend the
-          appropriate electric vehicle, charger and identify incentives.
-        </p>
+    <div className="flex flex-col items-center justify-between h-full">
+      <div>
+        <div className="max-w-xl mx-auto mb-14">
+          <Title>{title}</Title>
+          <p>{description}</p>
+        </div>
+        <div className="flex justify-center gap-12 mb-14">
+          {cards &&
+            cards.length > 0 &&
+            cards.map((card) => (
+              <IconCard key={card.label} icon={card.icon} label={card.label} />
+            ))}
+        </div>
       </div>
-      <div className="flex justify-center gap-12 mb-14">
-        <IconCard
-          icon={OrganizationIcon}
-          label="Tell us about your organization"
-        />
-        <IconCard icon={VehicleIcon} label="Tell us about your vehicles" />
-        <IconCard icon={SavingsIcon} label="See how much you can save" />
-      </div>
-      <button
+      <Button
+        label="Create Your First Vehicle Set"
         onClick={() => send('START')}
-        className="px-10 py-3 font-semibold text-white uppercase rounded-full bg-blue-vivid hover:bg-blue-800"
-      >
-        Create Your First Vehicle Set
-      </button>
+        primary
+      />
     </div>
   );
 };

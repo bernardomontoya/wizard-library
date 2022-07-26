@@ -78,6 +78,7 @@
   "dependencies": {
     "@babel/runtime": "^7.18.9",
     "@xstate/react": "^3.0.0",
+    "react-hook-form": "^7.33.1",
     "xstate": "^4.32.1"
   },
   "overrides": {
