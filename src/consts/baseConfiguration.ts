@@ -40,6 +40,44 @@ export const wizardConfiguration: WizardConfig = {
       title: 'Step 3',
       description:
         'We use this information to calculate fuel costs and applicable incentives',
+      fields: [
+        {
+          id: 'buildingType',
+          type: 'select',
+          label: 'Building Type',
+          defaultValue: '',
+          width: 6,
+          dropdownOptions: [
+            {
+              value: 'home',
+              label: 'Home (garage)',
+            },
+            {
+              value: 'smallOffice',
+              label: 'Small Office',
+            },
+            {
+              value: 'largeOffice',
+              label: 'Large Office',
+            },
+            {
+              value: 'warehouse',
+              label: 'Wharehouse',
+            },
+            {
+              value: 'depot',
+              label: 'Depot',
+            },
+            {
+              value: 'school',
+              label: 'Apartment Building',
+            },
+          ],
+          options: {
+            required: 'This field is required',
+          },
+        },
+      ],
     },
     summary: {
       on: { BACK: 'thirdStep', SUBMIT: '' },

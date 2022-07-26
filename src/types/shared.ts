@@ -79,13 +79,16 @@ export type FormWidth = 1 | 2 | 3 | 6;
 
 export type FormFieldOptions = RegisterOptions | undefined;
 
+export type FormFieldDropdownOptions = { value: string; label: string };
+
 export type FormField = {
   id: string;
   label: string;
-  type: 'text';
+  type: 'text' | 'select';
   defaultValue: string;
   width: FormWidth;
   options: FormFieldOptions;
+  dropdownOptions?: FormFieldDropdownOptions[];
 };
 
 export type FormFieldRegister = UseFormRegister<FieldValues>;

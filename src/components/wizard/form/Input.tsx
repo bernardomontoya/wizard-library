@@ -14,6 +14,7 @@ const Input: React.FC<InputProps> = ({ id, label, options, register }) => {
       <Label id={id} text={label} />
       <input
         {...register(id, options)}
+        id={id}
         className="bg-gray-50 border border-gray-300 text-gray-very-dark sm:text-sm rounded-lg block w-full p-2.5"
       />
     </div>
