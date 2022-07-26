@@ -19,8 +19,6 @@ const Form: React.FC<FormProps> = ({ title, description, fieldset, send }) => {
     trigger,
   } = useFormContext();
 
-  console.log('--ERRORS', errors);
-
   const checkIfPageHasErrors = () => {
     let hasErrors = true;
     fieldset.map((field) => {
