@@ -1,3 +1,5 @@
+import React from 'react';
+
 import useMachineContext from '../../../hooks/useMachineContext';
 import Form from '../form/Form';
 import Onboarding from '../onboarding/Onboarding';

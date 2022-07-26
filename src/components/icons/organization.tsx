@@ -1,3 +1,5 @@
+import React from 'react';
+
 const OrganizationIcon: React.FC = () => {
   return (
     <svg

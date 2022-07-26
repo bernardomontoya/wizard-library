@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { WizardSend, WizardStep } from '../../../types/shared';
 import Button from '../../button/Button';
 import Title from '../../typography/Title';

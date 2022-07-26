@@ -1,3 +1,5 @@
+import React from 'react';
+
 const SavingsIcon: React.FC = () => {
   return (
     <svg

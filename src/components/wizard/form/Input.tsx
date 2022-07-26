@@ -1,3 +1,5 @@
+import React from 'react';
+
 import { FormFieldOptions, FormFieldRegister } from '../../../types/shared';
 import Label from './Label';
 

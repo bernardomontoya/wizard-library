@@ -1,3 +1,5 @@
+import React from 'react';
+
 const VehicleIcon: React.FC = () => {
   return (
     <svg

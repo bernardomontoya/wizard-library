@@ -1,3 +1,5 @@
+import React from 'react';
+
 type IconCardProps = {
   icon: React.FC;
   label: string;
