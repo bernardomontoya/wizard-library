@@ -16,9 +16,13 @@ export const wizardConfiguration: WizardConfig = {
         { label: 'Tell us about your vehicles', icon: VehicleIcon },
         { label: 'See how much you can save', icon: SavingsIcon },
       ],
+      route: '/wizard/onboarding',
     },
     secondStep: {
-      on: { BACK: 'iddle', NEXT: 'thirdStep' },
+      on: {
+        BACK: { target: 'iddle', actions: ['navigate'] },
+        NEXT: { target: 'thirdStep', actions: ['navigate'] },
+      },
       title: 'General Information',
       description:
         'We use this information to calculate fuel costs and applicable incentives',
@@ -34,9 +38,13 @@ export const wizardConfiguration: WizardConfig = {
           },
         },
       ],
+      route: '/wizard/step-2',
     },
     thirdStep: {
-      on: { BACK: 'secondStep', NEXT: 'summary' },
+      on: {
+        BACK: { target: 'secondStep', actions: ['navigate'] },
+        NEXT: { target: 'summary', actions: ['navigate'] },
+      },
       title: 'Step 3',
       description:
         'We use this information to calculate fuel costs and applicable incentives',
@@ -78,12 +86,22 @@ export const wizardConfiguration: WizardConfig = {
           },
         },
       ],
+      route: '/wizard/step-3',
     },
     summary: {
-      on: { BACK: 'thirdStep', SUBMIT: '' },
+      on: {
+        BACK: { target: 'thirdStep', actions: ['navigate'] },
+        SUBMIT: { target: '' },
+      },
       title: 'Step 4',
       description:
         'We use this information to calculate fuel costs and applicable incentives',
+      route: '/wizard/review',
+    },
+  },
+  actions: {
+    navigate: (route: string) => {
+      console.log('--NAVIGATE TO', route);
     },
   },
 };

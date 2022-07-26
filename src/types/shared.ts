@@ -52,11 +52,15 @@ export type WizardStep = {
   description: string;
   fields?: FormField[];
   cards?: WizardCard[];
+  route?: string;
 };
 
 export type WizardConfig = {
   initialStep: string;
   steps: Record<string, WizardStep>;
+  actions: {
+    navigate: (route: string) => void;
+  };
 };
 
 export type MachineConfiguration = MachineConfig<

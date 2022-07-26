@@ -41,8 +41,13 @@ export const Wizard: React.FC<WizardProps> = ({ configuration }) => {
   };
   const machineOptions: WizardOptions = {
     actions: {
-      navigate: (context, event) => {
-        console.log('--Wizard: Run client navigation');
+      navigate: (_, __, meta) => {
+        const currentStep = meta.state.value;
+        const currentStepConfiguration =
+          wizardConfig.steps[currentStep as string];
+        if (currentStepConfiguration.route) {
+          wizardConfig.actions.navigate(currentStepConfiguration.route);
+        }
       },
     },
   };
