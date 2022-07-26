@@ -38,3 +38,22 @@ export const sanitizeMachineConfiguration = (
 
   return machineConfiguration;
 };
+
+export const getFormDefaultValues = (
+  configuration: WizardConfig
+): Record<string, any> => {
+  const initialValues = {} as Record<string, any>;
+
+  Object.keys(configuration.steps).forEach((step) => {
+    const currentStep = configuration.steps[step];
+    const { fields } = currentStep;
+
+    if (fields) {
+      fields.forEach((field) => {
+        const { id, defaultValue } = field;
+        initialValues[id as string] = defaultValue;
+      });
+    }
+  });
+  return initialValues;
+};

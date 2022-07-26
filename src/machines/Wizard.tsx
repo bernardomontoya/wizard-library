@@ -13,7 +13,10 @@ import {
   WizardConfig,
 } from '../types/shared';
 import '../globals.css';
-import { sanitizeMachineConfiguration } from '../utils/common';
+import {
+  getFormDefaultValues,
+  sanitizeMachineConfiguration,
+} from '../utils/common';
 
 export const GlobalStateContext: React.Context<
   | {
@@ -48,7 +51,8 @@ export const Wizard: React.FC<WizardProps> = ({ configuration }) => {
 
   const wizardMachine = createMachine(machineConfiguration, machineOptions);
   const wizardService = useInterpret(wizardMachine);
-  const methods = useForm();
+  const formDefaultValues = getFormDefaultValues(wizardConfig);
+  const methods = useForm({ defaultValues: formDefaultValues });
 
   return (
     <GlobalStateContext.Provider

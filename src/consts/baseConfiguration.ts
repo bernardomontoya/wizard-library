@@ -27,7 +27,7 @@ export const wizardConfiguration: WizardConfig = {
           id: 'zipCode',
           type: 'text',
           label: 'Zip Code',
-          initialValue: '',
+          defaultValue: '',
           width: 6,
         },
       ],

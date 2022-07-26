@@ -81,7 +81,7 @@ export type FormField = {
   id: string;
   label: string;
   type: 'text';
-  initialValue: string;
+  defaultValue: string;
   width: FormWidth;
 };
 
