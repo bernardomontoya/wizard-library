@@ -16,7 +16,12 @@ const Step: React.FC = () => {
         <Onboarding send={send} uiConfiguration={currentUIConfig} />
       )}
       {displayForm && (
-        <Form title={title} description={description} fieldset={fields || []} />
+        <Form
+          send={send}
+          title={title}
+          description={description}
+          fieldset={fields || []}
+        />
       )}
     </div>
   );

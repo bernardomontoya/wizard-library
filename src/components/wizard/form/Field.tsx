@@ -9,14 +9,16 @@ type FieldProps = {
 };
 
 const Field: React.FC<FieldProps> = ({ configuration }) => {
-  const { id, label, type, width } = configuration;
+  const { id, label, type, width, options } = configuration;
   const { register } = useFormContext();
   const widthClasses = getColumnClasses(width);
 
   const getField = () => {
     switch (type) {
       case 'text':
-        return <Input id={id} label={label} register={register} />;
+        return (
+          <Input id={id} label={label} options={options} register={register} />
+        );
 
       default:
         return null;

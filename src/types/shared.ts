@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FieldValues, UseFormRegister } from 'react-hook-form';
+import { FieldValues, RegisterOptions, UseFormRegister } from 'react-hook-form';
 import {
   BaseActionObject,
   Event,
@@ -77,12 +77,15 @@ export type StepConfiguration = {
 
 export type FormWidth = 1 | 2 | 3 | 6;
 
+export type FormFieldOptions = RegisterOptions | undefined;
+
 export type FormField = {
   id: string;
   label: string;
   type: 'text';
   defaultValue: string;
   width: FormWidth;
+  options: FormFieldOptions;
 };
 
 export type FormFieldRegister = UseFormRegister<FieldValues>;

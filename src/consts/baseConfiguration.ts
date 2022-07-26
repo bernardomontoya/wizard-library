@@ -29,6 +29,9 @@ export const wizardConfiguration: WizardConfig = {
           label: 'Zip Code',
           defaultValue: '',
           width: 6,
+          options: {
+            required: 'This field is required',
+          },
         },
       ],
     },

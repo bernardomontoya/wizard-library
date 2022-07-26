@@ -52,7 +52,10 @@ export const Wizard: React.FC<WizardProps> = ({ configuration }) => {
   const wizardMachine = createMachine(machineConfiguration, machineOptions);
   const wizardService = useInterpret(wizardMachine);
   const formDefaultValues = getFormDefaultValues(wizardConfig);
-  const methods = useForm({ defaultValues: formDefaultValues });
+  const methods = useForm({
+    defaultValues: formDefaultValues,
+    mode: 'all',
+  });
 
   return (
     <GlobalStateContext.Provider

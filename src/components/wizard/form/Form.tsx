@@ -1,5 +1,7 @@
-import useMachineContext from '../../../hooks/useMachineContext';
-import { FormField } from '../../../types/shared';
+import { useEffect } from 'react';
+import { useFormContext } from 'react-hook-form';
+
+import { FormField, WizardSend } from '../../../types/shared';
 import Button from '../../button/Button';
 import Title from '../../typography/Title';
 import Field from './Field';
@@ -8,10 +10,24 @@ type FormProps = {
   title: string;
   description: string;
   fieldset: FormField[];
+  send: WizardSend;
 };
 
-const Form: React.FC<FormProps> = ({ title, description, fieldset }) => {
-  const { send } = useMachineContext();
+const Form: React.FC<FormProps> = ({ title, description, fieldset, send }) => {
+  const {
+    formState: { errors },
+    trigger,
+  } = useFormContext();
+
+  console.log('--ERRORS', errors);
+
+  const checkIfPageHasErrors = () => {
+    let hasErrors = true;
+    fieldset.map((field) => {
+      hasErrors = errors[field.id] ? true : false;
+    });
+    return hasErrors;
+  };
 
   const handleClickNext = () => {
     send('NEXT');
@@ -19,6 +35,10 @@ const Form: React.FC<FormProps> = ({ title, description, fieldset }) => {
   const handleClickBack = () => {
     send('BACK');
   };
+
+  useEffect(() => {
+    trigger();
+  }, [trigger]);
 
   return (
     <div className="flex flex-col justify-between h-full">
@@ -33,7 +53,12 @@ const Form: React.FC<FormProps> = ({ title, description, fieldset }) => {
       </div>
       <div className="flex justify-between">
         <Button label="Back" onClick={handleClickBack} />
-        <Button label="Next" onClick={handleClickNext} primary />
+        <Button
+          label="Next"
+          onClick={handleClickNext}
+          disabled={checkIfPageHasErrors()}
+          primary
+        />
       </div>
     </div>
   );
