@@ -10,7 +10,7 @@ const StepTracker: React.FC = () => {
   return (
     <div className="absolute top-0 w-full">
       <div className="container p-8 mx-auto">
-        <p className="mb-4 text-center">{`Step ${currentStepNumber} of ${totalSteps}`}</p>
+        <p className="mb-4 text-center text-wizard-stepTracker">{`Step ${currentStepNumber} of ${totalSteps}`}</p>
         <div className="flex justify-center gap-2">
           {arrayOfSteps.map((step, i) => {
             const isActive = i < currentStepNumber;
@@ -18,7 +18,9 @@ const StepTracker: React.FC = () => {
               <div
                 key={step}
                 className={`w-20 h-1 ${
-                  isActive ? 'bg-blue-vivid' : 'bg-gray-dark'
+                  isActive
+                    ? 'bg-wizard-stepTrackerActive'
+                    : 'bg-wizard-stepTrackerInactive'
                 }`}
               ></div>
             );

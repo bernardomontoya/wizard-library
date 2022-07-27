@@ -29,7 +29,7 @@ const Select: React.FC<SelectProps> = ({
       <Label id={id} text={label} />
       <select
         {...register(id, options)}
-        className="bg-gray-50 border border-gray-300 text-gray-very-dark sm:text-sm rounded-lg block w-full p-2.5"
+        className="bg-wizard-field border border-wizard-field text-wizard-field sm:text-sm rounded-lg block w-full p-2.5"
       >
         {dropdownOptions.map((option) => {
           const { value, label } = option;

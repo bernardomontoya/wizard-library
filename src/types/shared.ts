@@ -55,6 +55,46 @@ export type WizardStep = {
   cards?: WizardCard[];
 };
 
+export type WizardStyles = {
+  background?: {
+    main?: string;
+    wizard?: string;
+  };
+  primary_button?: {
+    text?: string;
+    background?: string;
+    background_hover?: string;
+    border?: string;
+  };
+  secondary_button?: {
+    text?: string;
+    background?: string;
+    background_hover?: string;
+    border?: string;
+  };
+  disabled_button?: {
+    text?: string;
+    background?: string;
+    background_hover?: string;
+    border?: string;
+  };
+  text?: {
+    title?: string;
+    paragraph?: string;
+  };
+  field?: {
+    label?: string;
+    background?: string;
+    border?: string;
+    text?: string;
+  };
+  steps_tracker?: {
+    label?: string;
+    inactiveTab?: string;
+    activeTab?: string;
+  };
+};
+
 export type WizardConfig = {
   initialStep: string;
   steps: Record<string, WizardStep>;

@@ -42,7 +42,7 @@ const Form: React.FC<FormProps> = ({ title, description, fieldset, send }) => {
     <div className="flex flex-col justify-between h-full">
       <div>
         <Title>{title}</Title>
-        <p>{description}</p>
+        <p className="text-wizard-paragraph">{description}</p>
       </div>
       <div className="grid w-full max-w-xl grid-cols-6 gap-6 mx-auto">
         {fieldset.map((field) => (

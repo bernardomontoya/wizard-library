@@ -14,7 +14,7 @@ const Step: React.FC = () => {
   const { title, description, fields } = currentUIConfig;
 
   return (
-    <div className="container px-12 mx-auto text-center bg-white py-14 text-gray-very-dark rounded-2xl h-xxl">
+    <div className="container px-12 mx-auto text-center py-14 rounded-2xl h-xxl bg-wizard-wizard">
       {displayOnboading && (
         <Onboarding send={send} uiConfiguration={currentUIConfig} />
       )}

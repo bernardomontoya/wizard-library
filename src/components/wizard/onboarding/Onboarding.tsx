@@ -19,7 +19,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ uiConfiguration, send }) => {
       <div>
         <div className="max-w-xl mx-auto mb-14">
           <Title>{title}</Title>
-          <p>{description}</p>
+          <p className="text-wizard-paragraph">{description}</p>
         </div>
         <div className="flex justify-center gap-12 mb-14">
           {cards &&

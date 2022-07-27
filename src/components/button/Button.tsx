@@ -19,9 +19,13 @@ export const Button: React.FC<ButtonProps> = ({
       disabled={disabled}
       className={`px-10 py-3 font-semibold uppercase rounded-full ${
         primary
-          ? 'bg-blue-vivid hover:bg-blue-800 text-white'
-          : 'text-gray-very-dark border-blue-vivid border-2 hover:bg-gray-100'
-      } ${disabled ? 'cursor-not-allowed bg-gray-400 hover:bg-gray-600' : ''}`}
+          ? 'bg-wizard-primaryButton hover:bg-wizard-primaryButtonHover text-wizard-primaryButton'
+          : 'text-wizard-secondaryButton border-wizard-secondaryButton border-2 hover:bg-wizard-secondaryButtonHover bg-wizard-secondaryButton'
+      } ${
+        disabled
+          ? 'cursor-not-allowed bg-wizard-disabledButton hover:bg-wizard-disabledButtonHover text-wizard-disabledButton'
+          : ''
+      }`}
     >
       {label}
     </button>

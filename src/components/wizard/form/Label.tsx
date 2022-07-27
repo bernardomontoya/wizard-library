@@ -13,7 +13,7 @@ const Label: React.FC<PropsWithChildren<LabelProps>> = ({
   return (
     <label
       htmlFor={id}
-      className="block mb-2 text-sm font-medium text-gray-900 "
+      className="block mb-2 text-sm font-medium text-wizard-fieldLabel"
     >
       {text}
       {children}

@@ -5,18 +5,20 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import StepTracker from '../components/wizard/stepTracker/StepTracker';
 import Step from '../components/wizard/step/Step';
-import { wizardConfiguration } from '../consts/baseConfiguration';
+import { wizardConfiguration, wizardStyles } from '../consts/baseConfiguration';
 import {
   useInterpretT,
   MachineConfiguration,
   WizardOptions,
   WizardConfig,
+  WizardStyles,
 } from '../types/shared';
 import '../globals.css';
 import {
   getFormDefaultValues,
   sanitizeMachineConfiguration,
 } from '../utils/common';
+import StyleVariables from '../components/style/StyleVariables';
 
 export const GlobalStateContext: React.Context<
   | {
@@ -28,9 +30,10 @@ export const GlobalStateContext: React.Context<
 
 type WizardProps = {
   configuration: WizardConfig;
+  styles: WizardStyles;
 };
 
-export const Wizard: React.FC<WizardProps> = ({ configuration }) => {
+export const Wizard: React.FC<WizardProps> = ({ configuration, styles }) => {
   const wizardConfig = configuration || wizardConfiguration;
   const sanitizedMachineConfiguration = useMemo(
     () => sanitizeMachineConfiguration(wizardConfig),
@@ -66,8 +69,14 @@ export const Wizard: React.FC<WizardProps> = ({ configuration }) => {
     <GlobalStateContext.Provider
       value={{ wizardService, uiConfiguration: wizardConfig }}
     >
+      <StyleVariables
+        styleConfiguration={{
+          ...styles,
+          ...wizardStyles,
+        }}
+      />
       <FormProvider {...methods}>
-        <div className="flex flex-col justify-center h-screen bg-gray-light">
+        <div className="flex flex-col justify-center h-screen bg-wizard-main">
           <StepTracker />
           <Step />
         </div>

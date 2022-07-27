@@ -1,7 +1,54 @@
 import OrganizationIcon from '../components/icons/organization';
 import SavingsIcon from '../components/icons/savings';
 import VehicleIcon from '../components/icons/vehicle';
-import { WizardConfig } from '../types/shared';
+import { WizardConfig, WizardStyles } from '../types/shared';
+
+const colors = {
+  white: '#FFFFFF',
+  vividBlue: '#0072CE',
+  grayDark: '#595959',
+  grayVeryDark: '#404040',
+  gray: '#f9fafb',
+  grayLight: '#d1d5db',
+};
+
+export const wizardStyles: WizardStyles = {
+  background: {
+    main: '#F0F3F5',
+    wizard: colors.white,
+  },
+  primary_button: {
+    background: colors.vividBlue,
+    background_hover: '#1e40af',
+    text: colors.white,
+  },
+  secondary_button: {
+    background: colors.white,
+    background_hover: '#f3f4f6',
+    text: colors.grayVeryDark,
+    border: colors.vividBlue,
+  },
+  disabled_button: {
+    background: '#9ca3af',
+    background_hover: '#4b5563',
+    text: colors.white,
+  },
+  text: {
+    title: colors.grayVeryDark,
+    paragraph: colors.grayVeryDark,
+  },
+  steps_tracker: {
+    label: colors.grayVeryDark,
+    activeTab: colors.vividBlue,
+    inactiveTab: colors.grayDark,
+  },
+  field: {
+    background: colors.gray,
+    border: colors.grayLight,
+    text: colors.grayVeryDark,
+    label: '#111827',
+  },
+};
 
 export const wizardConfiguration: WizardConfig = {
   initialStep: 'iddle',
