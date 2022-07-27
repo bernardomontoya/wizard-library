@@ -1,4 +1,4 @@
-import React, { createContext } from 'react';
+import React, { createContext, useMemo } from 'react';
 import { createMachine } from 'xstate';
 import { useInterpret } from '@xstate/react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -32,27 +32,31 @@ type WizardProps = {
 
 export const Wizard: React.FC<WizardProps> = ({ configuration }) => {
   const wizardConfig = configuration || wizardConfiguration;
-  const sanitizedMachineConfiguration =
-    sanitizeMachineConfiguration(wizardConfig);
+  const sanitizedMachineConfiguration = useMemo(
+    () => sanitizeMachineConfiguration(wizardConfig),
+    [wizardConfig]
+  );
+  const wizardMachine = useMemo(() => {
+    const machineConfiguration: MachineConfiguration = {
+      id: 'wizard',
+      ...sanitizedMachineConfiguration,
+    };
 
-  const machineConfiguration: MachineConfiguration = {
-    id: 'wizard',
-    ...sanitizedMachineConfiguration,
-  };
-  const machineOptions: WizardOptions = {
-    actions: {
-      navigate: (_, __, meta) => {
-        const currentStep = meta.state.value;
-        const currentStepConfiguration =
-          wizardConfig.steps[currentStep as string];
-        if (currentStepConfiguration.route) {
-          wizardConfig.actions.navigate(currentStepConfiguration.route);
-        }
+    const machineOptions: WizardOptions = {
+      actions: {
+        navigate: (_, __, meta) => {
+          const currentStep = meta.state.value;
+          const currentStepConfiguration =
+            wizardConfig.steps[currentStep as string];
+          if (currentStepConfiguration.route) {
+            wizardConfig.actions.navigate(currentStepConfiguration.route);
+          }
+        },
       },
-    },
-  };
+    };
+    return createMachine(machineConfiguration, machineOptions);
+  }, [sanitizedMachineConfiguration, wizardConfig]);
 
-  const wizardMachine = createMachine(machineConfiguration, machineOptions);
   const wizardService = useInterpret(wizardMachine);
   const formDefaultValues = getFormDefaultValues(wizardConfig);
   const methods = useForm({
