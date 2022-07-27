@@ -39,7 +39,7 @@ export type WizardEvents =
   | { type: 'START' }
   | { type: 'NEXT' }
   | { type: 'BACK' }
-  | { type: 'SUBMIT' };
+  | { type: 'SUBMIT'; data: WizardContext };
 
 export type WizardCard = {
   icon: React.FC;
@@ -53,6 +53,8 @@ export type WizardStep = {
   route: string;
   fields?: FormField[];
   cards?: WizardCard[];
+  nextLabel?: string;
+  backLabel?: string;
 };
 
 export type WizardStyles = {
@@ -100,6 +102,7 @@ export type WizardConfig = {
   steps: Record<string, WizardStep>;
   actions: {
     navigate: (route: string) => void;
+    submit: (data: WizardContext) => void;
   };
 };
 

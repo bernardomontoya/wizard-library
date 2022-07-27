@@ -11,7 +11,7 @@ const IconCard: React.FC<IconCardProps> = ({ icon: Icon, label }) => {
       <div className="flex items-center h-20">
         <Icon />
       </div>
-      <p className="font-bold text-wizard-paragraph">{label}</p>
+      <p className="font-bold w-60 text-wizard-paragraph">{label}</p>
     </div>
   );
 };

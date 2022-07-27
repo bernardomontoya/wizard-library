@@ -1,30 +1,38 @@
 import React, { useEffect } from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { FormField, WizardSend } from '../../../types/shared';
+import { WizardSend, WizardStep } from '../../../types/shared';
 import Button from '../../button/Button';
 import Title from '../../typography/Title';
 import Field from './Field';
 
 type FormProps = {
-  title: string;
-  description: string;
-  fieldset: FormField[];
+  uiConfiguration: WizardStep;
   send: WizardSend;
 };
 
-const Form: React.FC<FormProps> = ({ title, description, fieldset, send }) => {
+const Form: React.FC<FormProps> = ({ uiConfiguration, send }) => {
   const {
     formState: { errors },
     trigger,
   } = useFormContext();
 
+  const {
+    title,
+    description,
+    fields = [],
+    backLabel,
+    nextLabel,
+  } = uiConfiguration;
+
   const checkIfPageHasErrors = () => {
-    let hasErrors = true;
-    fieldset.map((field) => {
-      hasErrors = errors[field.id] ? true : false;
-    });
-    return hasErrors;
+    for (let i = 0; i < fields.length; i++) {
+      const field = fields[i];
+
+      if (errors[field.id]) {
+        return true;
+      }
+    }
   };
 
   const handleClickNext = () => {
@@ -36,7 +44,7 @@ const Form: React.FC<FormProps> = ({ title, description, fieldset, send }) => {
 
   useEffect(() => {
     trigger();
-  }, [trigger, fieldset]);
+  }, [trigger, fields]);
 
   return (
     <div className="flex flex-col justify-between h-full">
@@ -45,14 +53,14 @@ const Form: React.FC<FormProps> = ({ title, description, fieldset, send }) => {
         <p className="text-wizard-paragraph">{description}</p>
       </div>
       <div className="grid w-full max-w-xl grid-cols-6 gap-6 mx-auto">
-        {fieldset.map((field) => (
+        {fields.map((field) => (
           <Field key={field.id} configuration={{ ...field }} />
         ))}
       </div>
       <div className="flex justify-between">
-        <Button label="Back" onClick={handleClickBack} />
+        <Button label={backLabel || 'Back'} onClick={handleClickBack} />
         <Button
-          label="Next"
+          label={nextLabel || 'Next'}
           onClick={handleClickNext}
           disabled={checkIfPageHasErrors()}
           primary

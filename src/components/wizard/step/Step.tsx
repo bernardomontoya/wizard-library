@@ -11,23 +11,19 @@ const Step: React.FC = () => {
   const displaySummary = state.matches('summary');
   const displayForm = !displayOnboading && !displaySummary;
   const currentUIConfig = uiConfiguration.steps[state.value as string];
-  const { title, description, fields } = currentUIConfig;
 
   return (
     <div className="container px-12 mx-auto text-center py-14 rounded-2xl h-xxl bg-wizard-wizard">
       {displayOnboading && (
         <Onboarding send={send} uiConfiguration={currentUIConfig} />
       )}
-      {displayForm && (
-        <Form
-          send={send}
-          title={title}
-          description={description}
-          fieldset={fields || []}
-        />
-      )}
+      {displayForm && <Form send={send} uiConfiguration={currentUIConfig} />}
       {displaySummary && (
-        <Summary uiConfiguration={uiConfiguration} send={send} />
+        <Summary
+          uiConfiguration={currentUIConfig}
+          wizardConfiguration={uiConfiguration}
+          send={send}
+        />
       )}
     </div>
   );

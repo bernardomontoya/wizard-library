@@ -39,6 +39,8 @@ export const Wizard: React.FC<WizardProps> = ({ configuration, styles }) => {
     () => sanitizeMachineConfiguration(wizardConfig),
     [wizardConfig]
   );
+  const formDefaultValues = getFormDefaultValues(wizardConfig);
+
   const wizardMachine = useMemo(() => {
     const machineConfiguration: MachineConfiguration = {
       id: 'wizard',
@@ -53,13 +55,17 @@ export const Wizard: React.FC<WizardProps> = ({ configuration, styles }) => {
             wizardConfig.steps[currentStep as string];
           wizardConfig.actions.navigate(currentStepConfiguration.route);
         },
+        submit: (_, event) => {
+          if (event.type !== 'SUBMIT') return;
+          wizardConfig.actions.submit(event.data);
+        },
       },
     };
     return createMachine(machineConfiguration, machineOptions);
   }, [sanitizedMachineConfiguration, wizardConfig]);
 
   const wizardService = useInterpret(wizardMachine);
-  const formDefaultValues = getFormDefaultValues(wizardConfig);
+
   const methods = useForm({
     defaultValues: formDefaultValues,
     mode: 'all',

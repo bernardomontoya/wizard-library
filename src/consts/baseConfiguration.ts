@@ -1,7 +1,7 @@
 import OrganizationIcon from '../components/icons/organization';
 import SavingsIcon from '../components/icons/savings';
 import VehicleIcon from '../components/icons/vehicle';
-import { WizardConfig, WizardStyles } from '../types/shared';
+import { WizardConfig, WizardContext, WizardStyles } from '../types/shared';
 
 const colors = {
   white: '#FFFFFF',
@@ -10,44 +10,6 @@ const colors = {
   grayVeryDark: '#404040',
   gray: '#f9fafb',
   grayLight: '#d1d5db',
-};
-
-export const wizardDarkMode: WizardStyles = {
-  background: {
-    main: '#1f2937',
-    wizard: '#2b394e',
-  },
-  primary_button: {
-    background: colors.vividBlue,
-    background_hover: '#1e40af',
-    text: colors.white,
-  },
-  secondary_button: {
-    background: colors.white,
-    background_hover: '#f3f4f6',
-    text: colors.grayVeryDark,
-    border: colors.vividBlue,
-  },
-  disabled_button: {
-    background: '#9ca3af',
-    background_hover: '#4b5563',
-    text: colors.white,
-  },
-  text: {
-    title: '#FFFFFF',
-    paragraph: '#e5e7eb',
-  },
-  steps_tracker: {
-    label: '#FFFFFF',
-    activeTab: colors.vividBlue,
-    inactiveTab: '#717171',
-  },
-  field: {
-    background: colors.gray,
-    border: colors.grayLight,
-    text: colors.grayVeryDark,
-    label: '#e5e7eb',
-  },
 };
 
 export const wizardStyles: WizardStyles = {
@@ -102,6 +64,7 @@ export const wizardConfiguration: WizardConfig = {
         { label: 'See how much you can save', icon: SavingsIcon },
       ],
       route: '/wizard/onboarding',
+      nextLabel: 'Create Your First Vehicle Set',
     },
     secondStep: {
       actions: {
@@ -176,17 +139,21 @@ export const wizardConfiguration: WizardConfig = {
     summary: {
       actions: {
         BACK: 'thirdStep',
-        SUBMIT: '',
+        SUBMIT: { actions: 'submit' },
       },
-      title: 'Step 4',
+      title: 'Review',
       description:
         'We use this information to calculate fuel costs and applicable incentives',
       route: '/wizard/review',
+      nextLabel: 'Send',
     },
   },
   actions: {
     navigate: (route: string) => {
       console.log('--NAVIGATE TO', route);
+    },
+    submit: (data: WizardContext) => {
+      console.log('--SUBMIT DATA', data);
     },
   },
 };

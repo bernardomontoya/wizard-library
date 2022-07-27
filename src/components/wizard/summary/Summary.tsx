@@ -1,23 +1,29 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 
-import { WizardConfig, WizardSend } from '../../../types/shared';
+import { WizardConfig, WizardSend, WizardStep } from '../../../types/shared';
 import { getFormLabels } from '../../../utils/common';
 import Button from '../../button/Button';
 import Title from '../../typography/Title';
 
 type SummaryProps = {
   send: WizardSend;
-  uiConfiguration: WizardConfig;
+  wizardConfiguration: WizardConfig;
+  uiConfiguration: WizardStep;
 };
 
-const Summary: React.FC<SummaryProps> = ({ uiConfiguration, send }) => {
+const Summary: React.FC<SummaryProps> = ({
+  wizardConfiguration,
+  uiConfiguration,
+  send,
+}) => {
   const { getValues } = useFormContext();
   const values = getValues();
-  const formLabels = getFormLabels(uiConfiguration);
+  const formLabels = getFormLabels(wizardConfiguration);
+  const { title, description, backLabel, nextLabel } = uiConfiguration;
 
   const handleSubmit = () => {
-    console.log('--Wizard: Run client submit');
+    send({ type: 'SUBMIT', data: values });
   };
 
   const handleClickBack = () => {
@@ -27,11 +33,8 @@ const Summary: React.FC<SummaryProps> = ({ uiConfiguration, send }) => {
   return (
     <div className="flex flex-col justify-between h-full">
       <div className="max-w-xl mx-auto mb-14">
-        <Title>Review</Title>
-        <p className="mb-8 text-wizard-paragraph">
-          We use this information to calculate fuel costs and applicable
-          incentives
-        </p>
+        <Title>{title}</Title>
+        <p className="mb-8 text-wizard-paragraph">{description}</p>
         <div className="flex flex-col gap-2 text-left text-wizard-paragraph">
           {Object.keys(values).map((key) => {
             const currentValue = values[key];
@@ -46,8 +49,8 @@ const Summary: React.FC<SummaryProps> = ({ uiConfiguration, send }) => {
         </div>
       </div>
       <div className="flex justify-between">
-        <Button label="Back" onClick={handleClickBack} />
-        <Button label="Next" onClick={handleSubmit} primary />
+        <Button label={backLabel || 'Back'} onClick={handleClickBack} />
+        <Button label={nextLabel || 'Next'} onClick={handleSubmit} primary />
       </div>
     </div>
   );

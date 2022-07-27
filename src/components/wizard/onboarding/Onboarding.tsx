@@ -11,7 +11,7 @@ type OnboardingProps = {
 };
 
 const Onboarding: React.FC<OnboardingProps> = ({ uiConfiguration, send }) => {
-  const { title, description } = uiConfiguration;
+  const { title, description, nextLabel } = uiConfiguration;
   const cards = uiConfiguration && uiConfiguration.cards;
 
   return (
@@ -30,7 +30,7 @@ const Onboarding: React.FC<OnboardingProps> = ({ uiConfiguration, send }) => {
         </div>
       </div>
       <Button
-        label="Create Your First Vehicle Set"
+        label={nextLabel || 'Create Your First Vehicle Set'}
         onClick={() => send('START')}
         primary
       />
