@@ -1,5 +1,8 @@
 import { Story, Meta } from '@storybook/react/types-6-0';
-import { wizardConfiguration, wizardStyles } from '../consts/baseConfiguration';
+import {
+  wizardConfiguration,
+  wizardDarkMode,
+} from '../consts/baseConfiguration';
 import { Wizard } from '../machines/Wizard';
 
 export default {
@@ -8,7 +11,11 @@ export default {
 } as Meta;
 
 const Template: Story = (args) => (
-  <Wizard configuration={wizardConfiguration} styles={wizardStyles} {...args} />
+  <Wizard
+    configuration={wizardConfiguration}
+    styles={wizardDarkMode}
+    {...args}
+  />
 );
 
 export const Default = Template.bind({});

@@ -5,7 +5,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 import StepTracker from '../components/wizard/stepTracker/StepTracker';
 import Step from '../components/wizard/step/Step';
-import { wizardConfiguration, wizardStyles } from '../consts/baseConfiguration';
+import { wizardConfiguration } from '../consts/baseConfiguration';
 import {
   useInterpretT,
   MachineConfiguration,
@@ -69,12 +69,7 @@ export const Wizard: React.FC<WizardProps> = ({ configuration, styles }) => {
     <GlobalStateContext.Provider
       value={{ wizardService, uiConfiguration: wizardConfig }}
     >
-      <StyleVariables
-        styleConfiguration={{
-          ...styles,
-          ...wizardStyles,
-        }}
-      />
+      <StyleVariables configuration={styles} />
       <FormProvider {...methods}>
         <div className="flex flex-col justify-center h-screen bg-wizard-main">
           <StepTracker />

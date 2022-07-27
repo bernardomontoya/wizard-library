@@ -1,19 +1,19 @@
 import React from 'react';
+import { wizardStyles } from '../../consts/baseConfiguration';
 import { WizardStyles } from '../../types/shared';
 import { getRGBColor } from '../../utils/common';
 
 type StyleVariablesProps = {
-  styleConfiguration: WizardStyles;
+  configuration: WizardStyles;
 };
 
-const StyleVariables: React.FC<StyleVariablesProps> = ({
-  styleConfiguration,
-}) => {
+const StyleVariables: React.FC<StyleVariablesProps> = ({ configuration }) => {
   const getCSSVariables = () => {
     let cssVariables = '';
-    Object.keys(styleConfiguration).map((configKey) => {
+    Object.keys(wizardStyles).map((configKey) => {
       const currentConfiguration =
-        styleConfiguration[configKey as keyof WizardStyles];
+        configuration[configKey as keyof WizardStyles] ||
+        wizardStyles[configKey as keyof WizardStyles];
 
       if (typeof currentConfiguration === 'object') {
         Object.keys(currentConfiguration).map((childKey) => {

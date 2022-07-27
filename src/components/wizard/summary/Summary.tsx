@@ -28,11 +28,11 @@ const Summary: React.FC<SummaryProps> = ({ uiConfiguration, send }) => {
     <div className="flex flex-col justify-between h-full">
       <div className="max-w-xl mx-auto mb-14">
         <Title>Review</Title>
-        <p className="mb-8">
+        <p className="mb-8 text-wizard-paragraph">
           We use this information to calculate fuel costs and applicable
           incentives
         </p>
-        <div className="flex flex-col gap-2 text-left">
+        <div className="flex flex-col gap-2 text-left text-wizard-paragraph">
           {Object.keys(values).map((key) => {
             const currentValue = values[key];
             const currentLabel = formLabels[key];
