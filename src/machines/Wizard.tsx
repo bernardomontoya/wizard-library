@@ -48,9 +48,7 @@ export const Wizard: React.FC<WizardProps> = ({ configuration }) => {
           const currentStep = meta.state.value;
           const currentStepConfiguration =
             wizardConfig.steps[currentStep as string];
-          if (currentStepConfiguration.route) {
-            wizardConfig.actions.navigate(currentStepConfiguration.route);
-          }
+          wizardConfig.actions.navigate(currentStepConfiguration.route);
         },
       },
     };

@@ -32,8 +32,8 @@ export const sanitizeMachineConfiguration = (
   };
   Object.keys(configuration.steps).forEach((step) => {
     const currentStep = configuration.steps[step];
-    const { on } = currentStep;
-    machineConfiguration.states[step] = { on };
+    const { actions } = currentStep;
+    machineConfiguration.states[step] = { on: actions, entry: 'navigate' };
   });
 
   return machineConfiguration;

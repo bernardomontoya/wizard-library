@@ -47,12 +47,12 @@ export type WizardCard = {
 };
 
 export type WizardStep = {
-  on: Record<string, any>;
+  actions: Record<string, any>;
   title: string;
   description: string;
+  route: string;
   fields?: FormField[];
   cards?: WizardCard[];
-  route?: string;
 };
 
 export type WizardConfig = {

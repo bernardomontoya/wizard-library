@@ -7,7 +7,7 @@ export const wizardConfiguration: WizardConfig = {
   initialStep: 'iddle',
   steps: {
     iddle: {
-      on: { START: { target: 'secondStep', actions: ['navigate'] } },
+      actions: { START: 'secondStep' },
       title: 'Going electric starts with understanding your needs',
       description:
         'We need to understand your requirements so we can recommend the appropriate electric vehicle, charger and identify incentives.',
@@ -19,9 +19,9 @@ export const wizardConfiguration: WizardConfig = {
       route: '/wizard/onboarding',
     },
     secondStep: {
-      on: {
-        BACK: { target: 'iddle', actions: ['navigate'] },
-        NEXT: { target: 'thirdStep', actions: ['navigate'] },
+      actions: {
+        BACK: 'iddle',
+        NEXT: 'thirdStep',
       },
       title: 'General Information',
       description:
@@ -41,9 +41,9 @@ export const wizardConfiguration: WizardConfig = {
       route: '/wizard/step-2',
     },
     thirdStep: {
-      on: {
-        BACK: { target: 'secondStep', actions: ['navigate'] },
-        NEXT: { target: 'summary', actions: ['navigate'] },
+      actions: {
+        BACK: 'secondStep',
+        NEXT: 'summary',
       },
       title: 'Step 3',
       description:
@@ -89,9 +89,9 @@ export const wizardConfiguration: WizardConfig = {
       route: '/wizard/step-3',
     },
     summary: {
-      on: {
-        BACK: { target: 'thirdStep', actions: ['navigate'] },
-        SUBMIT: { target: '' },
+      actions: {
+        BACK: 'thirdStep',
+        SUBMIT: '',
       },
       title: 'Step 4',
       description:
