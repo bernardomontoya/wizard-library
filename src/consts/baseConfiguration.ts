@@ -36,6 +36,7 @@ export const wizardStyles: WizardStyles = {
   text: {
     title: colors.grayVeryDark,
     paragraph: colors.grayVeryDark,
+    font: '',
   },
   steps_tracker: {
     label: colors.grayVeryDark,

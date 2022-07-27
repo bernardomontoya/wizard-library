@@ -77,7 +77,7 @@ export const Wizard: React.FC<WizardProps> = ({ configuration, styles }) => {
     >
       <StyleVariables configuration={styles} />
       <FormProvider {...methods}>
-        <div className="flex flex-col justify-center h-screen bg-wizard-main">
+        <div className="flex flex-col justify-center h-screen bg-wizard-main font-main">
           <StepTracker />
           <Step />
         </div>

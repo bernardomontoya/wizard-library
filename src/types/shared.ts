@@ -83,6 +83,7 @@ export type WizardStyles = {
   text?: {
     title?: string;
     paragraph?: string;
+    font?: string;
   };
   field?: {
     label?: string;

@@ -17,13 +17,19 @@ const StyleVariables: React.FC<StyleVariablesProps> = ({ configuration }) => {
 
       if (typeof currentConfiguration === 'object') {
         Object.keys(currentConfiguration).map((childKey) => {
-          const color =
+          const value =
             currentConfiguration[childKey as keyof typeof currentConfiguration];
-          if (color) {
-            const colorPrefix = 'wizard';
-            const colorKey = `${colorPrefix}-${configKey}-${childKey}`;
-            const primary = getRGBColor(color, colorKey);
-            cssVariables += `${primary} `;
+          const propertiesPrefix = 'wizard';
+
+          // Check for fonts
+          if (childKey === 'font') {
+            cssVariables += `--font-${propertiesPrefix}-${configKey}-${childKey}: ${value};`;
+          } else {
+            if (value) {
+              const colorKey = `${propertiesPrefix}-${configKey}-${childKey}`;
+              const primary = getRGBColor(value, colorKey);
+              cssVariables += `${primary} `;
+            }
           }
         });
       }

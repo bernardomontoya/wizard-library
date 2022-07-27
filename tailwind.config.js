@@ -13,6 +13,9 @@ module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        main: 'var(--font-wizard-text-font)',
+      },
       spacing: {
         xxl: '550px',
       },
